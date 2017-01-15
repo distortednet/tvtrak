@@ -3,20 +3,21 @@
     <div class="mdl-cell mdl-cell--6-col content" id="content">
        <search></search>
         <div v-if="GetStore.SearchResults[0]" v-for="ShowListing in GetStore.SearchResults">
-        <showlisting v-bind:listing="ShowListing.show"></showlisting>
+        <showlisting v-bind:showlist="ShowListing.show"></showlisting>
         <favoritebutton v-bind:show="ShowListing.show"><favoritebutton/>
 
        </div>
     </div>
     <div class="mdl-cell mdl-cell--6-col content" id="content">
       <div class="" v-if="GetStore.FavoriteShows[0]" v-for="show in GetStore.FavoriteShows">
-        <showlisting v-bind:listing="show.ShowDetails"></showlisting><br>
+        <showlisting v-bind:favoritelist="show.ShowDetails"></showlisting>
         <episode v-for="episode in show.Episodes.slice(0, 5)" v-bind:episode="episode"></episode>
       </div>
 
     </div>
 <!--
 bugs:
+weird inital refresh on search field
 favorite button visual state not consistent between search results.
 
 features:
