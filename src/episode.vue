@@ -7,10 +7,12 @@
         </div>
         <div class="media-body">
           <h4 class="media-heading">{{showdetails.name}}</h4>
-          <h4 class="media-heading">{{episode.name}}</h4>
+          <h5 class="media-heading">{{episode.name}}</h5>
           <span class="label label-success">SE-{{episode.season}}</span>
           <span class="label label-primary">EP-{{episode.number}}</span>
-          <span class="label label-warning">{{episode.airdate}}</span>
+          <span class="label label-warning">{{episode.airdate}}</span><br><br>
+          <span v-if="episode.summary">{{episode.summary.replace(/<(?:.|\n)*?>/gm, '')}}</span>
+          <span v-else>No summary found for this episode of {{showdetails.name}}</span>
         </div>
     </div>
 

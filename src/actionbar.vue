@@ -19,17 +19,22 @@ export default {
   },
   methods: {
     toggleclass: function() {
-
       this.active = !this.active;
+      this.saveresults();
+    },
+    saveresults: function() {
       var httpurl = 'http://api.tvmaze.com/shows/'+this.show.id+'/episodes';
       this.$http.get(httpurl).then((response) => {
         if(this.active) {
-          var SortedEpisodes = response.body.sort(function(a, b){ return new Date(b.airstamp) - new Date(a.airstamp); });
-          var combined = {"ShowDetails": this.show, "Episodes": SortedEpisodes};
-          this.$store.commit('addshow', combined);
+          this.$store.commit('addshow', {"ShowDetails": this.show, "Episodes": this.sorter(response.body)});
         } else {
           this.$store.commit('removeshow', this.show.id);
         }
+      });
+    },
+    sorter: function(arr) {
+      return arr.sort(function(a, b){
+        return new Date(b.airstamp) - new Date(a.airstamp);
       });
     }
  },

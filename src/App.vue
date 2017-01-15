@@ -4,16 +4,17 @@
     <div class="content col-lg-6" id="content">
        <search></search>
         <div v-if="GetStore.SearchResults[0]" v-for="ShowListing in GetStore.SearchResults">
-        <showlisting v-bind:showlist="ShowListing.show"></showlisting>
-        <actionbar v-bind:show="ShowListing.show"><actionbar/>
-
+          <showlisting v-bind:showlist="ShowListing.show"></showlisting>
+          <actionbar v-bind:show="ShowListing.show"><actionbar/>
        </div>
     </div>
     <div class="content col-lg-6" id="content">
-      <ul class="nav nav-tabs nav-justified">
+      <ul class="nav nav-tabs ">
         <li class="active"><a data-toggle="tab" href="#home">Upcomming</a></li>
         <li><a data-toggle="tab" href="#menu1">All Favorites</a></li>
         <li><a data-toggle="tab" href="#menu2">Past Shows</a></li>
+        <li><a data-toggle="tab" href="#menu3">Search debug</a></li>
+        <li><a data-toggle="tab" href="#menu4">Favorite debug</a></li>
       </ul>
       <div class="tab-content">
         <div id="home" class="tab-pane fade in active"><br>
@@ -29,18 +30,24 @@
         <div id="menu2" class="tab-pane fade">
           wat
         </div>
+        <div id="menu3" class="tab-pane fade">
+          <pre v-if="GetStore.SearchResults[0]">{{GetStore.SearchResults}}</pre>
+        </div>
+        <div id="menu4" class="tab-pane fade">
+          <pre v-if="GetStore.FavoriteShows[0]">{{GetStore.FavoriteShows}}</pre>
+        </div>
       </div>
   </div>
 <!--
 bugs:
-weird inital refresh on search field
 favorite button visual state not consistent between search results.
 
 features:
 use sqlite for db
 make favorite list sticky so content follows as you scroll
 set favorite list to default list when first opening app, can only be done after sqlite is in place
-episodes are sorted by air dates, but tv series are not sorted by air dates.
+episodes are sorted by air dates, but tv series are not sorted by air dates. this can be resolved by looking at the updated field on this endpoint for example http://api.tvmaze.com/shows/82
+i have no idea wtf this is, a timestamp of some variety. no idea how 2 parse.
 -->
 </div>
 </template>
@@ -58,13 +65,12 @@ export default {
   data () {
     return {
       results: null,
-      icon: "favorite_border"
     }
   },
   computed: {
     GetStore: function() {
       return this.$store.state;
-    },
+    }
   },
   components: {
       search,
@@ -75,7 +81,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>
