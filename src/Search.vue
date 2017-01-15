@@ -1,8 +1,6 @@
 <template>
-  <form id="searchform" class="form-group" on:submit.prevent="onSubmit">
-    <div class="mdl-textfield mdl-js-textfield">
-      <input class="form-control" type="text" placeholder="Search" v-model="find" v-on:keyup.enter="findshows">
-    </div>
+  <form v-on:submit.prevent id="searchform" class="form-group">
+    <input class="form-control" type="text" placeholder="Search" v-model="find" v-on:keyup.enter="findshows"><br>
   </form>
 </template>
 
