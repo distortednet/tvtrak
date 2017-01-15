@@ -1,9 +1,16 @@
 <template lang="html">
-    <div id="episode ">
-    <img v-if="episode.image" v-bind:src="episode.image.medium"><br><br>
-    [SE-{{episode.season}}-EP-{{episode.number}}] {{episode.airdate}}
-    <a v-bind:href="episode.url" target="_blank">{{episode.name}}
-
+    <div id="episode">
+      <div class="media">
+        <div class="media-left media-middle">
+          <a v-bind:href="episode.url" target="_blank"><img class="media-object" v-bind:src="[episode.image ? episode.image.medium : 'http://placehold.it/250x140']"></a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{episode.name}}</h4>
+          <span class="label label-success">SE-{{episode.season}}</span>
+          <span class="label label-primary">EP-{{episode.number}}</span>
+          <span class="label label-warning">{{episode.airdate}}</span>
+        </div>
+      </div><br>
     </div>
 </template>
 

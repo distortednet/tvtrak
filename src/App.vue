@@ -1,20 +1,21 @@
 <template>
-  <div id="app" class="mdl-grid" >
-    <div class="mdl-cell mdl-cell--6-col content" id="content">
+  <div id="app"  class="container-fluid">
+
+    <div class="content col-lg-6" id="content">
        <search></search>
         <div v-if="GetStore.SearchResults[0]" v-for="ShowListing in GetStore.SearchResults">
         <showlisting v-bind:showlist="ShowListing.show"></showlisting>
-        <favoritebutton v-bind:show="ShowListing.show"><favoritebutton/>
+        <actionbar v-bind:show="ShowListing.show"><actionbar/>
 
        </div>
     </div>
-    <div class="mdl-cell mdl-cell--6-col content" id="content">
+    <div class="content col-lg-6" id="content">
       <div class="" v-if="GetStore.FavoriteShows[0]" v-for="show in GetStore.FavoriteShows">
         <showlisting v-bind:favoritelist="show.ShowDetails"></showlisting>
         <episode v-for="episode in show.Episodes.slice(0, 5)" v-bind:episode="episode"></episode>
       </div>
 
-    </div>
+  </div>
 <!--
 bugs:
 weird inital refresh on search field
@@ -31,7 +32,7 @@ set favorite list to default list when first opening app, can only be done after
 <script>
 import Vue from 'vue'
 import search from './search.vue'
-import favoritebutton from './favoritebutton.vue'
+import actionbar from './actionbar.vue'
 import showlisting from './showlisting.vue'
 import episode from './episode.vue'
 export default {
@@ -39,7 +40,7 @@ export default {
   data () {
     return {
       results: null,
-      icon: "favorite_border",
+      icon: "favorite_border"
     }
   },
   computed: {
@@ -47,9 +48,12 @@ export default {
       return this.$store.state;
     },
   },
+  methods: {
+
+  },
   components: {
       search,
-      favoritebutton,
+      actionbar,
       showlisting,
       episode
   }

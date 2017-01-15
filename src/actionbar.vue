@@ -1,11 +1,12 @@
 <template lang="html">
 <div>
-  <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" :class="{ 'active': active }" @click="toggleclass">
-    <i class="material-icons">{{ active ? icon1 : icon2 }}</i>
-  </button><hr>
+  <button class="btn btn-default glyphicon glyphicon" v-bind:class="[active ? 'glyphicon-heart' : 'glyphicon-heart-empty']" v-on:click="toggleclass"></button>
+  <button class="btn btn-default glyphicon glyphicon glyphicon-send"></button>
+  <button class="btn btn-default glyphicon glyphicon glyphicon-remove"></button>
+  <!-- changed this from a favorite button to action bar. will have the ability to tweet shows, and filter shows from showing in your search. -->
+  <br><br>
+
 </div>
-
-
 </template>
 
 <script>
@@ -13,13 +14,12 @@ import Vue from 'vue'
 export default {
   data () {
     return {
-      active: false,
-      icon1: 'favorite',
-      icon2: 'favorite_border'
+      active: false
     }
   },
   methods: {
     toggleclass: function() {
+
       this.active = !this.active;
       var httpurl = 'http://api.tvmaze.com/shows/'+this.show.id+'/episodes';
       this.$http.get(httpurl).then((response) => {

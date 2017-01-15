@@ -1,16 +1,16 @@
 <template lang="html">
     <div id="shows">
       <div v-if="showlist">
-        <strong>Show:</strong> <small>{{showlist.name}}</small><br>
-        <strong>Language:</strong> <small>{{showlist.language}}</small><br>
-        <strong>Genres:</strong> <small><span v-if="showlist.genres[0]" v-for="genre in showlist.genres">{{genre}} </span></small><br>
-        <strong>Description</strong> <small><br>{{showlist.summary.replace(/<(?:.|\n)*?>/gm, '')}} ... </small>
+        <h4 class="media-heading">{{showlist.name}}</h4>
+        <span class="label label-warning">{{showlist.language}}</span>
+        <span class="label label-info" v-if="showlist.genres[0]" v-for="genre in showlist.genres">{{genre}}</span><br><br>
+        <div class="well well-sm">{{showlist.summary.replace(/<(?:.|\n)*?>/gm, '')}}</div>
       </div>
       <!-- this logic is dirty and can be optimized better to reduce code repetition. but it works for now. -->
       <div v-if="favoritelist">
-        <strong>Show:</strong> <small>{{favoritelist.name}}</small><br>
-        <strong>Language:</strong> <small>{{favoritelist.language}}</small><br>
-        <strong>Genres:</strong> <small><span v-if="favoritelist.genres[0]" v-for="genre in favoritelist.genres">{{genre}} </span></small>
+        <h4 class="media-heading">{{favoritelist.name}}</h4>
+        <span class="label label-warning">{{favoritelist.language}}</span>
+        <span class="label label-info" v-if="favoritelist.genres[0]" v-for="genre in favoritelist.genres">{{genre}}</span><br><br>
       </div>
 
     </div>

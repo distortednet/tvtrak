@@ -1,7 +1,7 @@
 <template>
-  <form action="#" id="searchform" on:submit.prevent="onSubmit">
+  <form id="searchform" class="form-group" on:submit.prevent="onSubmit">
     <div class="mdl-textfield mdl-js-textfield">
-      <input class="mdl-textfield__input" type="text" id="searchinput" v-model="find" v-on:keyup.enter="findshows">
+      <input class="form-control" type="text" placeholder="Search" v-model="find" v-on:keyup.enter="findshows">
     </div>
   </form>
 </template>
@@ -30,4 +30,5 @@ export default {
 </script>
 
 <style lang="css">
+
 </style>
