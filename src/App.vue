@@ -47,7 +47,7 @@ use sqlite for db
 make favorite list sticky so content follows as you scroll
 set favorite list to default list when first opening app, can only be done after sqlite is in place
 episodes are sorted by air dates, but tv series are not sorted by air dates. this can be resolved by looking at the updated field on this endpoint for example http://api.tvmaze.com/shows/82
-i have no idea wtf this is, a timestamp of some variety. no idea how 2 parse.
+sometimes, .replace for stripping html content from api results fails.
 -->
 </div>
 </template>
